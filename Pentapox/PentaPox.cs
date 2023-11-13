@@ -12,10 +12,16 @@ namespace Pentapox
 {
     public partial class PentaPox : Form
     {
+        //Global Constants
+        Size PalettesExtended = new Size(480, 210);
+        Size PalettesHidden = new Size(210, 210);
+        Size PaletteImageSize = new Size(20, 20);
+
         public PentaPox()
         {
             InitializeComponent();
             UpdateColorCodeBoxes();
+            this.Size = PalettesExtended;
         }
 
         private FiveBitColor ColorFromScrollBars()
@@ -110,11 +116,21 @@ namespace Pentapox
 
         private void UpdatePreview(FiveBitColor color)
         {
-            int width = 20;
-            int height = 20;
-            ColorPreview.Image = color.ToImage(width, height);
-            ColorPreview.Width = width;
-            ColorPreview.Height = height;
+            ColorPreview.Image = color.ToImage(PaletteImageSize);
+            ColorPreview.Size = PaletteImageSize;
+        }
+
+        private void ShowPalettes_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem A = (ToolStripMenuItem)sender;
+            if (A.Checked)
+            {
+                this.Size = PalettesExtended;
+            }
+            else
+            {
+                this.Size = PalettesHidden;
+            }
         }
     }
 
@@ -157,8 +173,10 @@ namespace Pentapox
         {
             return Color.FromArgb(Red * 8, Green * 8, Blue * 8);
         }
-        public Bitmap ToImage(int width, int height)
+        public Bitmap ToImage(Size ImageSize)
         {
+            int width = ImageSize.Width;
+            int height = ImageSize.Height;
             Bitmap image = new Bitmap(width, height);
             Color thisColor = this.To24BPP();
             for(int x = 0; x < image.Width; x++)

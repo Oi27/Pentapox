@@ -50,6 +50,8 @@ namespace Pentapox
             this.BlueScrollBar = new System.Windows.Forms.TrackBar();
             this.ColorValueSliders = new System.Windows.Forms.Panel();
             this.ColorValueBoxes = new System.Windows.Forms.FlowLayoutPanel();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ShowPalettes = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.ColorPreview)).BeginInit();
             this.PentaMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RedScrollBar)).BeginInit();
@@ -131,10 +133,11 @@ namespace Pentapox
             // 
             this.PentaMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.settingsToolStripMenuItem,
             this.aboutPenta});
             this.PentaMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.PentaMenuStrip.Name = "PentaMenuStrip";
-            this.PentaMenuStrip.Size = new System.Drawing.Size(228, 24);
+            this.PentaMenuStrip.Size = new System.Drawing.Size(464, 24);
             this.PentaMenuStrip.TabIndex = 10;
             this.PentaMenuStrip.Text = "menuStrip1";
             // 
@@ -266,11 +269,29 @@ namespace Pentapox
             this.ColorValueBoxes.Size = new System.Drawing.Size(41, 85);
             this.ColorValueBoxes.TabIndex = 19;
             // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ShowPalettes});
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            // 
+            // ShowPalettes
+            // 
+            this.ShowPalettes.Checked = true;
+            this.ShowPalettes.CheckOnClick = true;
+            this.ShowPalettes.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ShowPalettes.Name = "ShowPalettes";
+            this.ShowPalettes.Size = new System.Drawing.Size(180, 22);
+            this.ShowPalettes.Text = "Show Palettes";
+            this.ShowPalettes.Click += new System.EventHandler(this.ShowPalettes_Click);
+            // 
             // PentaPox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(228, 193);
+            this.ClientSize = new System.Drawing.Size(464, 201);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.ColorValueBoxes);
             this.Controls.Add(this.ColorValueSliders);
@@ -282,7 +303,9 @@ namespace Pentapox
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.PentaMenuStrip);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.PentaMenuStrip;
+            this.MaximizeBox = false;
             this.Name = "PentaPox";
             this.Text = "PentaPox";
             ((System.ComponentModel.ISupportInitialize)(this.ColorPreview)).EndInit();
@@ -322,6 +345,8 @@ namespace Pentapox
         private System.Windows.Forms.FlowLayoutPanel ColorValueBoxes;
         private System.Windows.Forms.ToolStripMenuItem loadpalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem PentaVersion;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ShowPalettes;
     }
 }
 
