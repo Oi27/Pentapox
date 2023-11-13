@@ -14,14 +14,14 @@ namespace Pentapox
     {
         //Global Constants
         Size PalettesExtended = new Size(480, 210);
-        Size PalettesHidden = new Size(210, 210);
+        Size PalettesHidden = new Size(240, 210);
         Size PaletteImageSize = new Size(20, 20);
 
         public PentaPox()
         {
             InitializeComponent();
             UpdateColorCodeBoxes();
-            this.Size = PalettesExtended;
+            this.Size = PalettesHidden;
         }
 
         private FiveBitColor ColorFromScrollBars()
@@ -116,8 +116,7 @@ namespace Pentapox
 
         private void UpdatePreview(FiveBitColor color)
         {
-            ColorPreview.Image = color.ToImage(PaletteImageSize);
-            ColorPreview.Size = PaletteImageSize;
+            ColorPreview.SetColor(color);
         }
 
         private void ShowPalettes_Click(object sender, EventArgs e)

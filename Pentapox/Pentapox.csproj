@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PalettePicture.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PalettePicture.Designer.cs">
+      <DependentUpon>PalettePicture.cs</DependentUpon>
+    </Compile>
     <Compile Include="PentaPox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +60,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="PalettePicture.resx">
+      <DependentUpon>PalettePicture.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PentaPox.resx">
       <DependentUpon>PentaPox.cs</DependentUpon>
     </EmbeddedResource>
