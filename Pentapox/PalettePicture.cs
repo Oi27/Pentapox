@@ -27,13 +27,28 @@ namespace Pentapox
             this.Size = imageSize;
             this.SetColor(color);
         }
+        public PalettePicture(Color color, Size imageSize)
+        {
+            InitializeComponent();
+            this.Size = imageSize;
+            this.SetColor(color);
+        }
 
         public void SetColor(FiveBitColor color)
         {
             Color = color;
             this.Image = Color.ToImage(this.Size);
         }
-
+        public void SetColor(Color color)
+        {
+            FiveBitColor convert = new FiveBitColor(color);
+            Color = convert;
+            this.Image = Color.ToImage(this.Size);
+        }
+        public FiveBitColor Get5bitColor()
+        {
+            return Color;
+        }
         private FiveBitColor Color { set; get; }
     }
 }

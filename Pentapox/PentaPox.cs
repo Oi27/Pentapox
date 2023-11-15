@@ -22,6 +22,12 @@ namespace Pentapox
             InitializeComponent();
             UpdateColorCodeBoxes();
             this.Size = PalettesHidden;
+
+            Palette addThis = new Palette();
+            addThis.Location = new Point(0, 20);
+            addThis.ColorPreview = this.ColorPreview;
+            this.Controls.Add(addThis);
+            addThis.BringToFront();
         }
 
         private FiveBitColor ColorFromScrollBars()
