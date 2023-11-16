@@ -13,6 +13,7 @@ namespace Pentapox
     public partial class Palette : Panel
     {
         //Palette is a collection of 16 PalettePictures
+        //Line number is initalized to -1 & set to a real number by caller, if necessary.
         private Size PaletteSquareSize = new Size(15, 20);
         public PalettePicture ColorPreview { set; get; }
         public int LineNumber { set; get; }
