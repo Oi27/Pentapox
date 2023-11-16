@@ -52,6 +52,7 @@ namespace Pentapox
             this.BlueScrollBar = new System.Windows.Forms.TrackBar();
             this.ColorValueSliders = new System.Windows.Forms.Panel();
             this.ColorValueBoxes = new System.Windows.Forms.FlowLayoutPanel();
+            this.PalettePanelBorder = new System.Windows.Forms.Panel();
             this.ColorPreview = new Pentapox.PalettePicture();
             this.PentaMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RedScrollBar)).BeginInit();
@@ -130,7 +131,7 @@ namespace Pentapox
             this.aboutPenta});
             this.PentaMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.PentaMenuStrip.Name = "PentaMenuStrip";
-            this.PentaMenuStrip.Size = new System.Drawing.Size(464, 24);
+            this.PentaMenuStrip.Size = new System.Drawing.Size(296, 24);
             this.PentaMenuStrip.TabIndex = 10;
             this.PentaMenuStrip.Text = "menuStrip1";
             // 
@@ -161,7 +162,7 @@ namespace Pentapox
             // 
             this.ShowPalettes.CheckOnClick = true;
             this.ShowPalettes.Name = "ShowPalettes";
-            this.ShowPalettes.Size = new System.Drawing.Size(180, 22);
+            this.ShowPalettes.Size = new System.Drawing.Size(147, 22);
             this.ShowPalettes.Text = "Show Palettes";
             this.ShowPalettes.Click += new System.EventHandler(this.ShowPalettes_Click);
             // 
@@ -278,6 +279,17 @@ namespace Pentapox
             this.ColorValueBoxes.Size = new System.Drawing.Size(41, 85);
             this.ColorValueBoxes.TabIndex = 19;
             // 
+            // PalettePanelBorder
+            // 
+            this.PalettePanelBorder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.PalettePanelBorder.AutoScroll = true;
+            this.PalettePanelBorder.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PalettePanelBorder.Location = new System.Drawing.Point(12, 156);
+            this.PalettePanelBorder.Name = "PalettePanelBorder";
+            this.PalettePanelBorder.Size = new System.Drawing.Size(208, 43);
+            this.PalettePanelBorder.TabIndex = 21;
+            // 
             // ColorPreview
             // 
             this.ColorPreview.Image = ((System.Drawing.Image)(resources.GetObject("ColorPreview.Image")));
@@ -291,7 +303,8 @@ namespace Pentapox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(464, 201);
+            this.ClientSize = new System.Drawing.Size(296, 211);
+            this.Controls.Add(this.PalettePanelBorder);
             this.Controls.Add(this.ColorPreview);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.ColorValueBoxes);
@@ -303,11 +316,12 @@ namespace Pentapox
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.PentaMenuStrip);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.PentaMenuStrip;
             this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(312, 250);
             this.Name = "PentaPox";
             this.Text = "PentaPox";
+            this.SizeChanged += new System.EventHandler(this.PentaPox_SizeChanged);
             this.PentaMenuStrip.ResumeLayout(false);
             this.PentaMenuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RedScrollBar)).EndInit();
@@ -337,16 +351,17 @@ namespace Pentapox
         private System.Windows.Forms.TextBox TwentyFourBPP;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TrackBar RedScrollBar;
-        private System.Windows.Forms.TrackBar GreenScrollBar;
-        private System.Windows.Forms.TrackBar BlueScrollBar;
-        private System.Windows.Forms.Panel ColorValueSliders;
-        private System.Windows.Forms.FlowLayoutPanel ColorValueBoxes;
         private System.Windows.Forms.ToolStripMenuItem loadpalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem PentaVersion;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ShowPalettes;
-        private PalettePicture ColorPreview;
+        public System.Windows.Forms.FlowLayoutPanel ColorValueBoxes;
+        public System.Windows.Forms.Panel ColorValueSliders;
+        public System.Windows.Forms.TrackBar RedScrollBar;
+        public System.Windows.Forms.TrackBar GreenScrollBar;
+        public System.Windows.Forms.TrackBar BlueScrollBar;
+        public PalettePicture ColorPreview;
+        private System.Windows.Forms.Panel PalettePanelBorder;
     }
 }
 

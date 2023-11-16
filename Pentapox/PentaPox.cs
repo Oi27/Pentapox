@@ -15,25 +15,33 @@ namespace Pentapox
         //Global Constants
         Size PalettesExtended = new Size(480, 210);
         Size PalettesHidden = new Size(240, 210);
-        Size PaletteImageSize = new Size(20, 20);
-
+        //The size of the PalettePictures is a property of the Palette object.
+        public PalettePicture ActiveColor { set; get; }
         public PentaPox()
         {
             InitializeComponent();
+            this.ActiveColor = null;
+            //PaletteContainer palettePanel = new PaletteContainer()
+            //{
+            //    Location = PalettePanelBorder.Location,
+            //    Size = PalettePanelBorder.Size,
+            //    Name = "PalettePanel",
+            //    Anchor = PalettePanelBorder.Anchor,
+            //};
+            //this.Controls.Add(palettePanel);
+            for(int i = 0; i < 16; i++)
+            {
+                Palette newPalette = new Palette()
+                {
+                    ColorPreview = this.ColorPreview
+                };
+                newPalette.Location = new Point(0, i * newPalette.Size.Height);
+                PalettePanelBorder.Controls.Add(newPalette);
+            }
+            int scrollBarAllowance = 20;
+            PalettePanelBorder.Size = new Size (PalettePanelBorder.Controls[0].Size.Width+scrollBarAllowance, PalettePanelBorder.Size.Height);
+
             UpdateColorCodeBoxes();
-            this.Size = PalettesHidden;
-
-            Palette addThis = new Palette();
-            addThis.Location = new Point(0, 20);
-            addThis.ColorPreview = this.ColorPreview;
-            this.Controls.Add(addThis);
-            addThis.BringToFront();
-
-            //debug test palette copy
-            Palette another = new Palette(addThis);
-            another.Location = new Point(0, 40);
-            this.Controls.Add(another);
-            another.BringToFront();
         }
 
         private FiveBitColor ColorFromScrollBars()
@@ -44,9 +52,8 @@ namespace Pentapox
             return new FiveBitColor(R, G, B);
         }
 
-        private void ColorBar_Scroll(object sender, EventArgs e)
+        public void ColorBar_Scroll(object sender, EventArgs e)
         {
-            TrackBar A = (TrackBar)sender;
             UpdateColorCodeBoxes();
             UpdateColorValueBoxes();
         }
@@ -95,8 +102,14 @@ namespace Pentapox
                 color.To24BPP().G.ToString("X2") +
                 color.To24BPP().B.ToString("X2");
             UpdatePreview(color);
+            UpdateActiveColor(color);
         }
 
+        private void UpdateActiveColor(FiveBitColor color)
+        {
+            if (ActiveColor == null) { return; }
+            ActiveColor.SetColor(color);
+        }
         private void UpdateColorValueSliders(FiveBitColor color)
         {
             RedScrollBar.Value = color.Red;
@@ -142,6 +155,11 @@ namespace Pentapox
             {
                 this.Size = PalettesHidden;
             }
+        }
+
+        private void PentaPox_SizeChanged(object sender, EventArgs e)
+        {
+            this.Text = this.Size.ToString();
         }
     }
 

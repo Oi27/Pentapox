@@ -123,11 +123,11 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="ColorPreview.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAGQAAAAyCAYAAACqNX6+AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACTSURBVHhe7cixDQAwDICw/P90mgPY6QCSF+bafAVnPDjj
-        wRkPznhwxoMzHpzx4IwHZzw448EZD854cMaDMx6c8eCMB2c8OOPBGQ/OeHDGgzMenPHgjAdnPDjjwRkP
-        znhwxoMzHpzx4IwHZzw448EZD854cMaDMx6c8eCMB2c8OOPBGQ/OeHDGgzMenPHgjAdnFLMPs5t1lrfz
-        qmgAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAAGQAAAAyCAYAAACqNX6+AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAJNJREFUeF7tyLENADAMgLD8/3SaA9jpAJIX5tp8BWc8OOPBGQ/OeHDGgzMenPHg
+        jAdnPDjjwRkPznhwxoMzHpzx4IwHZzw448EZD854cMaDMx6c8eCMB2c8OOPBGQ/OeHDGgzMenPHgjAdn
+        PDjjwRkPznhwxoMzHpzx4IwHZzw448EZD854cMaDMx6c8eCMB2cUsw+zm3WWt/OqaAAAAABJRU5ErkJg
+        gg==
 </value>
   </data>
 </root>
