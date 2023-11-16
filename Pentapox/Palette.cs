@@ -33,6 +33,18 @@ namespace Pentapox
             this.Size = new Size(PaletteSquareSize.Width * 16, PaletteSquareSize.Height);
             this.ColorPreview = null;
         }
+        public Palette(Palette copyThis)
+        {
+            for (int i = 0; i < copyThis.Controls.Count; i++)
+            {
+                PalettePicture original = (PalettePicture)copyThis.Controls[i];
+                PalettePicture newEntry = new PalettePicture(original);
+                newEntry.Click += PaletteColor_Click;
+                this.Controls.Add(newEntry);
+            }
+            this.Size = copyThis.Size;
+            this.ColorPreview = copyThis.ColorPreview;
+        }
         private void PaletteColor_Click(object sender, EventArgs e)
         {
             if(ColorPreview == null) { return; }

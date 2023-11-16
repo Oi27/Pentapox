@@ -34,6 +34,14 @@ namespace Pentapox
             this.SetColor(color);
         }
 
+        public PalettePicture(PalettePicture copyThis)
+        {
+            //copies location exclusively for when copied for copying palettes... might need more copy methods
+            SetColor(new FiveBitColor(copyThis.Color));
+            this.Size = copyThis.Size;
+            this.Location = copyThis.Location;
+        }
+
         public void SetColor(FiveBitColor color)
         {
             Color = color;

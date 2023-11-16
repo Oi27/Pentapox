@@ -28,6 +28,12 @@ namespace Pentapox
             addThis.ColorPreview = this.ColorPreview;
             this.Controls.Add(addThis);
             addThis.BringToFront();
+
+            //debug test palette copy
+            Palette another = new Palette(addThis);
+            another.Location = new Point(0, 40);
+            this.Controls.Add(another);
+            another.BringToFront();
         }
 
         private FiveBitColor ColorFromScrollBars()
@@ -141,6 +147,12 @@ namespace Pentapox
 
     public class FiveBitColor
     {
+        public FiveBitColor(FiveBitColor copyThis)
+        {
+            Red = copyThis.Red;
+            Blue = copyThis.Blue;
+            Green = copyThis.Green;
+        }
         public FiveBitColor(byte R, byte G, byte B)
         {
             //byte data type to construct from 5BPP data 00-1F
