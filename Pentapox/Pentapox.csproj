@@ -52,12 +52,6 @@
     <Compile Include="Palette.Designer.cs">
       <DependentUpon>Palette.cs</DependentUpon>
     </Compile>
-    <Compile Include="PaletteContainer.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="PaletteContainer.Designer.cs">
-      <DependentUpon>PaletteContainer.cs</DependentUpon>
-    </Compile>
     <Compile Include="PalettePicture.cs">
       <SubType>Component</SubType>
     </Compile>

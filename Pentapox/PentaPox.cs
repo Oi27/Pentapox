@@ -21,26 +21,17 @@ namespace Pentapox
         {
             InitializeComponent();
             this.ActiveColor = null;
-            //PaletteContainer palettePanel = new PaletteContainer()
-            //{
-            //    Location = PalettePanelBorder.Location,
-            //    Size = PalettePanelBorder.Size,
-            //    Name = "PalettePanel",
-            //    Anchor = PalettePanelBorder.Anchor,
-            //};
-            //this.Controls.Add(palettePanel);
             for(int i = 0; i < 16; i++)
             {
                 Palette newPalette = new Palette()
                 {
-                    ColorPreview = this.ColorPreview
+                    ColorPreview = this.ColorPreview,
+                    LineNumber = i,
                 };
                 newPalette.Location = new Point(0, i * newPalette.Size.Height);
-                PalettePanelBorder.Controls.Add(newPalette);
+                PalettePanel.Controls.Add(newPalette);
             }
-            int scrollBarAllowance = 20;
-            PalettePanelBorder.Size = new Size (PalettePanelBorder.Controls[0].Size.Width+scrollBarAllowance, PalettePanelBorder.Size.Height);
-
+            PalettePanel_SizeChanged(PalettePanel, null);
             UpdateColorCodeBoxes();
         }
 
@@ -160,6 +151,30 @@ namespace Pentapox
         private void PentaPox_SizeChanged(object sender, EventArgs e)
         {
             this.Text = this.Size.ToString();
+        }
+
+        private void PalettePanel_SizeChanged(object sender, EventArgs e)
+        {
+            //if the size of the control is smaller than the size of the contents, vertically, then:
+            //turn on autoscroll
+            //increase size of control to account for scrollbar appearance
+            //(why is the scrollbar 21 pixels wide??)
+            Panel panel = (Panel)sender;
+            int scrollBarSize = 21;
+            Size scrollsOn = new Size(panel.Controls[0].Width + scrollBarSize, panel.Height);
+            Size scrollsOff = new Size(panel.Controls[0].Width, panel.Height);
+            int sizeContents = panel.Controls[0].Height * panel.Controls.Count;
+            if(panel.Height < sizeContents)
+            {
+                //enable scrolls & change size
+                panel.AutoScroll = true;
+                panel.Size = scrollsOn;
+            }
+            else
+            {
+                panel.AutoScroll = false;
+                panel.Size = scrollsOff;
+            }
         }
     }
 

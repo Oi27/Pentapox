@@ -15,6 +15,7 @@ namespace Pentapox
         //Palette is a collection of 16 PalettePictures
         private Size PaletteSquareSize = new Size(15, 20);
         public PalettePicture ColorPreview { set; get; }
+        public int LineNumber { set; get; }
         public Palette()
         {
             //new palette with no args autofills all the colors to a default gradient
@@ -25,12 +26,14 @@ namespace Pentapox
                 PalettePicture addThis = new PalettePicture(gradientColor, PaletteSquareSize)
                 {
                     Location = new Point(i * PaletteSquareSize.Width, 0),
+                    Tag = new PalettePictureTags(i),
                 };
                 addThis.Click += PaletteColor_Click;
                 this.Controls.Add(addThis);
             }
             this.Size = new Size(PaletteSquareSize.Width * 16, PaletteSquareSize.Height);
             PentaPox mainWindow = (PentaPox)this.FindForm();
+            this.LineNumber = -1;
             this.ColorPreview = null;
         }
         public Palette(Palette copyThis)
@@ -48,6 +51,8 @@ namespace Pentapox
         private void PaletteColor_Click(object sender, EventArgs e)
         {
             //Uses FindForm to get the main window no matter where it is
+            //doesn't update the palette index viewer unless the palette was explicitly given a line number.
+            //(^feels pretty safe.)
             if(ColorPreview == null) { return; }
             PalettePicture clicked = (PalettePicture)sender;
             ColorPreview.SetColor(clicked.Get5bitColor());
@@ -59,6 +64,14 @@ namespace Pentapox
             mainWindow.GreenScrollBar.Value = colorClicked.Green;
             mainWindow.BlueScrollBar.Value = colorClicked.Blue;
             mainWindow.ColorBar_Scroll(null, null);
+
+            Palette clickedPalette = (Palette)clicked.Parent;
+            int paletteLine = clickedPalette.LineNumber;
+            PalettePictureTags palTag = (PalettePictureTags)clicked.Tag;
+            if (paletteLine < 0 || palTag == null) { return; }
+            int relativePaletteIndex = palTag.RelativeIndex;
+            int realPaletteIndex = (paletteLine * 16) + relativePaletteIndex;
+            mainWindow.ActivePaletteIndexBox.Text = realPaletteIndex.ToString("X4");
         }
     }
 }

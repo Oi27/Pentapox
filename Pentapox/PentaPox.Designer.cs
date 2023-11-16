@@ -52,8 +52,10 @@ namespace Pentapox
             this.BlueScrollBar = new System.Windows.Forms.TrackBar();
             this.ColorValueSliders = new System.Windows.Forms.Panel();
             this.ColorValueBoxes = new System.Windows.Forms.FlowLayoutPanel();
-            this.PalettePanelBorder = new System.Windows.Forms.Panel();
+            this.PalettePanel = new System.Windows.Forms.Panel();
             this.ColorPreview = new Pentapox.PalettePicture();
+            this.ActivePaletteIndexBox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.PentaMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RedScrollBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GreenScrollBar)).BeginInit();
@@ -279,16 +281,16 @@ namespace Pentapox
             this.ColorValueBoxes.Size = new System.Drawing.Size(41, 85);
             this.ColorValueBoxes.TabIndex = 19;
             // 
-            // PalettePanelBorder
+            // PalettePanel
             // 
-            this.PalettePanelBorder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.PalettePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.PalettePanelBorder.AutoScroll = true;
-            this.PalettePanelBorder.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.PalettePanelBorder.Location = new System.Drawing.Point(12, 156);
-            this.PalettePanelBorder.Name = "PalettePanelBorder";
-            this.PalettePanelBorder.Size = new System.Drawing.Size(208, 43);
-            this.PalettePanelBorder.TabIndex = 21;
+            this.PalettePanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PalettePanel.Location = new System.Drawing.Point(12, 156);
+            this.PalettePanel.Name = "PalettePanel";
+            this.PalettePanel.Size = new System.Drawing.Size(208, 43);
+            this.PalettePanel.TabIndex = 21;
+            this.PalettePanel.SizeChanged += new System.EventHandler(this.PalettePanel_SizeChanged);
             // 
             // ColorPreview
             // 
@@ -299,12 +301,33 @@ namespace Pentapox
             this.ColorPreview.TabIndex = 20;
             this.ColorPreview.TabStop = false;
             // 
+            // ActivePaletteIndexBox
+            // 
+            this.ActivePaletteIndexBox.Enabled = false;
+            this.ActivePaletteIndexBox.Location = new System.Drawing.Point(173, 130);
+            this.ActivePaletteIndexBox.MaxLength = 4;
+            this.ActivePaletteIndexBox.Name = "ActivePaletteIndexBox";
+            this.ActivePaletteIndexBox.Size = new System.Drawing.Size(47, 20);
+            this.ActivePaletteIndexBox.TabIndex = 22;
+            this.ActivePaletteIndexBox.Text = "0000";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(170, 115);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(58, 13);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Active Pal.";
+            // 
             // PentaPox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(296, 211);
-            this.Controls.Add(this.PalettePanelBorder);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.ActivePaletteIndexBox);
+            this.Controls.Add(this.PalettePanel);
             this.Controls.Add(this.ColorPreview);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.ColorValueBoxes);
@@ -361,7 +384,9 @@ namespace Pentapox
         public System.Windows.Forms.TrackBar GreenScrollBar;
         public System.Windows.Forms.TrackBar BlueScrollBar;
         public PalettePicture ColorPreview;
-        private System.Windows.Forms.Panel PalettePanelBorder;
+        private System.Windows.Forms.Panel PalettePanel;
+        private System.Windows.Forms.Label label6;
+        public System.Windows.Forms.TextBox ActivePaletteIndexBox;
     }
 }
 

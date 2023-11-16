@@ -40,6 +40,7 @@ namespace Pentapox
             SetColor(new FiveBitColor(copyThis.Color));
             this.Size = copyThis.Size;
             this.Location = copyThis.Location;
+            this.Tag = new PalettePictureTags((PalettePictureTags)copyThis.Tag);
         }
 
         public void SetColor(FiveBitColor color)
@@ -58,5 +59,23 @@ namespace Pentapox
             return Color;
         }
         private FiveBitColor Color { set; get; }
+    }
+    public class PalettePictureTags
+    {
+        //relative index 
+        public PalettePictureTags(int i)
+        {
+            RelativeIndex = i;
+            AestheticOnly = false;
+        }
+
+        public PalettePictureTags(PalettePictureTags copyThis)
+        {
+            if(copyThis == null) { return; }
+            RelativeIndex = copyThis.RelativeIndex;
+            AestheticOnly = copyThis.AestheticOnly;
+        }
+        public int RelativeIndex { set; get; }
+        public bool AestheticOnly { set; get; }
     }
 }
