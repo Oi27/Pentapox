@@ -13,10 +13,10 @@ namespace Pentapox
     public partial class PentaPox : Form
     {
         //Global Constants
-        Size PalettesExtended = new Size(480, 210);
-        Size PalettesHidden = new Size(240, 210);
         //The size of the PalettePictures is a property of the Palette object.
         public PalettePicture ActiveColor { set; get; }
+        public Palette AnimatedPalette { set; get; }
+        public int ActivePaletteLine { set; get; }
         public PentaPox()
         {
             InitializeComponent();
@@ -32,7 +32,34 @@ namespace Pentapox
                 PalettePanel.Controls.Add(newPalette);
             }
             PalettePanel_SizeChanged(PalettePanel, null);
+            UpdateFxPreviewLine(0);
+
             UpdateColorCodeBoxes();
+        }
+
+        public void UpdateFxPreviewLine(int paletteLine)
+        {
+            //adds "someNew" in front of AnimatedPalette before deleting & replacing the object in the AnimatedPalette property.
+            //makes the transition smoother than removing the property first :D
+            const string paletteName = "AnimatedFxPreview";
+
+            Palette someNew = new Palette((Palette)PalettePanel.Controls[paletteLine])
+            {
+                Location = AnimPaletteLabel.Location,
+                Name = paletteName,
+                FxPreview = true,
+                ColorPreview = null,
+            };
+            this.Controls.Add(someNew);
+            someNew.BringToFront();
+
+            bool fxLinePresent = this.Controls.Contains(AnimatedPalette);
+            if (fxLinePresent)
+            {
+                this.Controls.Remove(AnimatedPalette);
+            }
+
+            AnimatedPalette = someNew;
         }
 
         private FiveBitColor ColorFromScrollBars()
@@ -94,6 +121,16 @@ namespace Pentapox
                 color.To24BPP().B.ToString("X2");
             UpdatePreview(color);
             UpdateActiveColor(color);
+            StepFxPreviewColor(color);
+        }
+
+        private void StepFxPreviewColor(FiveBitColor color)
+        {
+            if(ActiveColor == null) { return; }
+            PalettePictureTags A = (PalettePictureTags)ActiveColor.Tag;
+            int read = A.RelativeIndex;
+            PalettePicture toUpdate = (PalettePicture)AnimatedPalette.Controls[read];
+            toUpdate.SetColor(color);
         }
 
         private void UpdateActiveColor(FiveBitColor color)
@@ -140,11 +177,11 @@ namespace Pentapox
             ToolStripMenuItem A = (ToolStripMenuItem)sender;
             if (A.Checked)
             {
-                this.Size = PalettesExtended;
+                //this.Size = PalettesExtended;
             }
             else
             {
-                this.Size = PalettesHidden;
+                //this.Size = PalettesHidden;
             }
         }
 
@@ -241,5 +278,14 @@ namespace Pentapox
         public int Red { set; get; }
         public int Green { set; get; }
         public int Blue { set; get; }
+    }
+
+    public class PaletteFxLine
+    {
+
+    }
+    public class PaletteFX
+    {
+
     }
 }

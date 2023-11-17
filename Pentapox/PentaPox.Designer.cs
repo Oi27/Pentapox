@@ -56,6 +56,8 @@ namespace Pentapox
             this.ColorPreview = new Pentapox.PalettePicture();
             this.ActivePaletteIndexBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.AnimPaletteLabel = new System.Windows.Forms.Label();
+            this.PaletteFxPanel = new System.Windows.Forms.Panel();
             this.PentaMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RedScrollBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GreenScrollBar)).BeginInit();
@@ -133,7 +135,7 @@ namespace Pentapox
             this.aboutPenta});
             this.PentaMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.PentaMenuStrip.Name = "PentaMenuStrip";
-            this.PentaMenuStrip.Size = new System.Drawing.Size(296, 24);
+            this.PentaMenuStrip.Size = new System.Drawing.Size(602, 24);
             this.PentaMenuStrip.TabIndex = 10;
             this.PentaMenuStrip.Text = "menuStrip1";
             // 
@@ -320,11 +322,31 @@ namespace Pentapox
             this.label6.TabIndex = 23;
             this.label6.Text = "Active Pal.";
             // 
+            // AnimPaletteLabel
+            // 
+            this.AnimPaletteLabel.AutoSize = true;
+            this.AnimPaletteLabel.Location = new System.Drawing.Point(301, 39);
+            this.AnimPaletteLabel.Name = "AnimPaletteLabel";
+            this.AnimPaletteLabel.Size = new System.Drawing.Size(0, 13);
+            this.AnimPaletteLabel.TabIndex = 24;
+            // 
+            // PaletteFxPanel
+            // 
+            this.PaletteFxPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.PaletteFxPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PaletteFxPanel.Location = new System.Drawing.Point(304, 71);
+            this.PaletteFxPanel.Name = "PaletteFxPanel";
+            this.PaletteFxPanel.Size = new System.Drawing.Size(286, 128);
+            this.PaletteFxPanel.TabIndex = 25;
+            // 
             // PentaPox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(296, 211);
+            this.ClientSize = new System.Drawing.Size(602, 211);
+            this.Controls.Add(this.PaletteFxPanel);
+            this.Controls.Add(this.AnimPaletteLabel);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.ActivePaletteIndexBox);
             this.Controls.Add(this.PalettePanel);
@@ -387,6 +409,8 @@ namespace Pentapox
         private System.Windows.Forms.Panel PalettePanel;
         private System.Windows.Forms.Label label6;
         public System.Windows.Forms.TextBox ActivePaletteIndexBox;
+        private System.Windows.Forms.Label AnimPaletteLabel;
+        private System.Windows.Forms.Panel PaletteFxPanel;
     }
 }
 

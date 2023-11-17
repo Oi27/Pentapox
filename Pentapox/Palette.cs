@@ -16,6 +16,7 @@ namespace Pentapox
         //Line number is initalized to -1 & set to a real number by caller, if necessary.
         private Size PaletteSquareSize = new Size(15, 20);
         public PalettePicture ColorPreview { set; get; }
+        public bool FxPreview { set; get; }
         public int LineNumber { set; get; }
         public Palette()
         {
@@ -54,10 +55,11 @@ namespace Pentapox
             //Uses FindForm to get the main window no matter where it is
             //doesn't update the palette index viewer unless the palette was explicitly given a line number.
             //(^feels pretty safe.)
-            if(ColorPreview == null) { return; }
+            PentaPox mainWindow = (PentaPox)this.FindForm();
             PalettePicture clicked = (PalettePicture)sender;
+            Palette clickedPalette = (Palette)clicked.Parent;
+            if(ColorPreview == null) { return; }
             ColorPreview.SetColor(clicked.Get5bitColor());
-            PentaPox mainWindow = (PentaPox)clicked.FindForm();
             mainWindow.ActiveColor = clicked;
 
             FiveBitColor colorClicked = clicked.Get5bitColor();
@@ -66,8 +68,10 @@ namespace Pentapox
             mainWindow.BlueScrollBar.Value = colorClicked.Blue;
             mainWindow.ColorBar_Scroll(null, null);
 
-            Palette clickedPalette = (Palette)clicked.Parent;
             int paletteLine = clickedPalette.LineNumber;
+            mainWindow.UpdateFxPreviewLine(paletteLine);
+            mainWindow.ActivePaletteLine = paletteLine;
+
             PalettePictureTags palTag = (PalettePictureTags)clicked.Tag;
             if (paletteLine < 0 || palTag == null) { return; }
             int relativePaletteIndex = palTag.RelativeIndex;
