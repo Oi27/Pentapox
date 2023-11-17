@@ -23,7 +23,7 @@ namespace Pentapox
             this.ActiveColor = null;
             for(int i = 0; i < 16; i++)
             {
-                Palette newPalette = new Palette()
+                Palette newPalette = new Palette(16)
                 {
                     ColorPreview = this.ColorPreview,
                     LineNumber = i,
@@ -33,8 +33,16 @@ namespace Pentapox
             }
             PalettePanel_SizeChanged(PalettePanel, null);
             UpdateFxPreviewLine(0);
-
             UpdateColorCodeBoxes();
+
+            PaletteFxLine news = new PaletteFxLine(3) 
+            { 
+                Location = new Point(300, 100),                
+            };
+            news.Pal.ColorPreview = this.ColorPreview;
+
+            this.Controls.Add(news);
+            news.BringToFront();
         }
 
         public void UpdateFxPreviewLine(int paletteLine)
@@ -42,12 +50,11 @@ namespace Pentapox
             //adds "someNew" in front of AnimatedPalette before deleting & replacing the object in the AnimatedPalette property.
             //makes the transition smoother than removing the property first :D
             const string paletteName = "AnimatedFxPreview";
-
+            if(paletteLine == -1) { return; }
             Palette someNew = new Palette((Palette)PalettePanel.Controls[paletteLine])
             {
                 Location = AnimPaletteLabel.Location,
                 Name = paletteName,
-                FxPreview = true,
                 ColorPreview = null,
             };
             this.Controls.Add(someNew);
@@ -280,12 +287,19 @@ namespace Pentapox
         public int Blue { set; get; }
     }
 
-    public class PaletteFxLine
+    public class PaletteFxInstruction
     {
-
+        //goto [paletteFxLine]
+        //delete
+        //maybe more? 
+    }
+    public class PaletteFxData
+    {
+        //contains frame delay, list of FiveBitColors, and optional flow instruction
+        //in theory each line could contain a different number of colors, so it should be supported.
     }
     public class PaletteFX
     {
-
+        //contains starting offset and list of PaletteFxLines
     }
 }
